@@ -1941,7 +1941,7 @@ google({ query: input, disableConsole: true }).then(results => {
 
 /*awsm*/
 var prefix = "#"
-let points = JSON.parse(fs.readFileSync('../json/awsm.json', 'utf8'));
+let points = JSON.parse(fs.readFileSync('../awsm.json', 'utf8'));
 client.on('message', message => {
 if (!points[message.author.id]) points[message.author.id] = {
 	points: 0,
@@ -1949,7 +1949,7 @@ if (!points[message.author.id]) points[message.author.id] = {
 if (message.content.startsWith(prefix + 'عواصم')) {
 	if(!message.channel.guild) return
 
-const type = require('../json/awsm.json');
+const type = require('../awsm.json');
 const item = type[Math.floor(Math.random() * type.length)];
 const filter = response => {
     return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
@@ -1984,7 +1984,7 @@ if (message.content.startsWith(prefix + 'نقاطي')) {
 	.setDescription(`نقاطك: \`${userData.points}\``)
 	message.channel.sendEmbed(embed)
   }
-  fs.writeFile("./json/awsmm.json", JSON.stringify(points), (err) => {
+  fs.writeFile("./awsmm.json", JSON.stringify(points), (err) => {
     if (err) console.error(err)
   })
 });
