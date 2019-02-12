@@ -120,7 +120,6 @@ client.on("message", message => {
    『${prefix}translate / يترجم』
    『${prefix}botserver / يحطيك سرفرات البوت بترتيب』
    『${prefix}short / اختصار الروابط』
-   『${prefix}calculate / حاسبة』
    **
            ***Administrative Commands***
    **
@@ -1654,31 +1653,6 @@ client.on('message', message => {
 
 });
    
-/*math*/
-var prefix = "#"
-const math = require('math-expression-evaluator');
-const stripIndents = require('common-tags').stripIndents;
-
-client.on('message', msg => {
- if (msg.content.startsWith(prefix + 'calculate')) {
-    let args = msg.content.split(" ").slice(1);
-	    const question = args.join(' ');
-    if (args.length < 1) {
-        msg.reply('Specify a equation, please.');
-} else {    let answer;
-    try {
-        answer = math.eval(question);
-    } catch (err) {
-        msg.reply(`Error: ${err}`);
-    }
-    
-	const embed = new Discord.RichEmbed()
-	.addField("**Input**: ",`**${question}**`, true)
-	.addField("**Output**: ",`**${answer}**`, true)
-    msg.channel.send(embed)
-	}
-
-});
 
 /*MUTE CHANNEL*/
 var prefix = "#"
