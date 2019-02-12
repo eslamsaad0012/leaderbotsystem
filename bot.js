@@ -104,7 +104,6 @@ client.on("message", message => {
            ***General Commands***
    **
    『${prefix}id/ معلومات عن حسابك』
-   『${prefix}2id / معلومات عن الحساب في صوره』
    『${prefix}embed/ يكرر كلامك بمبيد』
    『${prefix}sug/ الإقتراحات』
    『${prefix}roles/ يطلع الرتب』
@@ -298,7 +297,6 @@ client.on('message', message => {
     return message.reply(`**${inviteCount}: عدد الاشخاص الذي دعوتهم هو**`)
 
 });
-}});
 
 /*معلونات البوت*/
  var prefix = "#"
@@ -441,9 +439,7 @@ client.on('message', message => {
     reaction2.on("collect", r => {
     message.channel.send(`**اوكي شكرأ لك**`).then(m => m.delete(5000));
     msg.delete();
-    })
-    })
-    }
+  
     });
 
 /*الرتب*/
@@ -1187,80 +1183,6 @@ client.on('ready', () => {
 
  
 });
-var prefix = "#"
-/*
-var prefix = "#"
-//daily
-const moment = ('moment');
-
-    const money = require('discord-money');
- 
-    // Define client for Discord
-
- 
-    // This runs when a message is recieved...
-    client.on('message', message => {
- 
-        // Prefix
-     
-        // Example: Fetching Balance
-        if (message.content.toUpperCase() === `${prefix}CREDITS`) {
- 
-            money.fetchBal(message.author.id).then((i) => { // money.fetchBal grabs the userID, finds it, and puts it into 'i'.
-                message.channel.send(`**Balance:** ${i.money}`);
-            })
- 
- 
-        }
- 
-        // Example: Adding Money To A User
-        if (message.content.toUpperCase() === `${prefix}PAYYOU`) {
-
- //           money.updateBal(message.author.id, 1000000 /* Value *///) //.then((i) => { // money.updateBal grabs the (userID, value) value being how much you want to add, and puts it into 'i'.
-          /*       message.channel.send(`**You got $1000000!**\n**New Balance:** ${i.money}`);
-            })
- 
-        }
- 
-        // Example: Removing Money From A User
-        if (message.content.toUpperCase() === `${prefix}PAYFINE`) {
- 
-            money.updateBal(message.author.id, -500).then((i) => { // Since the 'value' is -500, it will 'add' -500, making the bal $500 lower.
-                message.channel.send(`**You paid your fine of $500!**\n**New Balance:** ${i.money}`);
-            })
- 
-        }
- 
-        // Example: Getting a daily reward
-        if (message.content.toUpperCase() === prefix + `DAILY`) {
-
-                if (money[message.author.username + message.guild.name] != moment().format('L')) {
-                    money[message.author.username + message.guild.name] = moment().format('L')
-                    money.updateBal(message.author.id, 500 ,200).then((i) => { // The daily ends of the day, so everyday they can get a daily bonus, if they missed it, they can't get it back again.
-                        message.channel.send({embed: {
-                            color: 3447003,
-                            description: 'Recieved your **$500** \`^daily`\. I think you should check \`^credits\`.',
-                            author: {
-                                name: `${message.author.username}#${message.author.discriminator}`,
-                                icon_url: message.author.avatarURL 
-                            }
-                        }});
-                    })
-                } else {
-                    message.channel.send({embed: {
-                        color: 3447003,
-                        description: 'You already recieved your \`^daily`\. Check later **' + moment().endOf('day').fromNow() + '**.', // When you got your daily already, this message will show up.
-                        author: {
-                            name: `${message.author.username}#${message.author.discriminator}`,
-                            icon_url: message.author.avatarURL 
-                        }
-                    }});
-                }
-            }
- 
- 
-    });
-*/
 
 
 
@@ -1755,7 +1677,7 @@ client.on('message', msg => {
 	.addField("**Output**: ",`**${answer}**`, true)
     msg.channel.send(embed)
 	}
-};
+
 });
 
 /*MUTE CHANNEL*/
@@ -1789,139 +1711,7 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('لي�
 
 });
 
-/*id img*/
-/*
-var prefix = "#"
-const dateFormat = require('dateformat');
-var Canvas = require('canvas')
-var jimp = require('jimp')
-var moment = require("moment");
 
-
-client.on('message', message => {
-
-    if(message.content.startsWith(prefix + '2id')) {
-if(!message.channel.guild) return;
-      var args = message.content.split(" ").slice(1);
-      let user = message.mentions.users.first();
-      var men = message.mentions.users.first();
-         var heg;
-         if(men) {
-             heg = men
-         } else {
-             heg = message.author
-         }
-       var mentionned = message.mentions.members.first();
-          var h;
-         if(mentionned) {
-             h = mentionned
-         } else {
-             h = message.member
-         }
-  moment.locale('ar');
-    const w = ['../id1.png','../id2.png','../id3.png','../id4.png','../id5.png']
-        let Image = Canvas.Image,
-            canvas = new Canvas(500, 500),
-            ctx = canvas.getContext('2d');
-        ctx.patternQuality = 'bilinear';
-        ctx.filter = 'bilinear';
-        ctx.antialias = 'subpixel';
-        ctx.shadowColor = 'rgba(0, 0, 0, 0)';
-        ctx.shadowOffsetY = 2;
-        ctx.shadowBlur = 2;
-        fs.readFile(`${w[Math.floor(Math.random() * w.length)]}`, function (err, Background) {
-            if (err) return console.log(err);
-            let BG = Canvas.Image;
-            let ground = new Image;
-            ground.src = Background;
-            ctx.drawImage(ground, 0, 0, 500, 500);
-
-})
-                let url = h.user.displayAvatarURL.endsWith(".webp") ? h.user.displayAvatarURL.slice(5, -20) + ".png" : h.user.displayAvatarURL;
-                jimp.read(url, (err, ava) => {
-                    if (err) return console.log(err);
-                    ava.getBuffer(jimp.MIME_PNG, (err, buf) => {
-                        if (err) return console.log(err);
-  //time dateformet
-  const millis = new Date().getTime() - h.user.createdAt.getTime();
-  const now = new Date();
-  dateFormat(now, 'dddd, mmmm dS, yyyy');
-  const stats2 = ['online', 'Low', 'Medium', 'Insane'];
-  const days = millis / 1000 / 60 / 60 / 24;
-            dateFormat(now, 'dddd, mmmm dS, yyyy');
-            
-        
-                          //دخولك الديسكورد
-                          var day = `منذ ${days.toFixed(0)} يوم`
-                          ctx.font = '27px Arial Bold';
-                          ctx.fontSize = '30px';
-                          ctx.fillStyle = "#ffffff";
-                          ctx.textAlign = "center";
-                          ctx.fillText(day, 109, 97)
-              //wl
-              var millis1;
-        if(mentionned){
-            var millis1 = new Date().getTime() - mentionned.joinedAt
-        } else {
-            var millis1 = new Date().getTime() - moment(message.member.joinedAt);;
-            
-        }
-
-  const days1 = millis1 / 1000 / 60 / 60 / 24;
-  
-                        //دخولك السيرفر
-                        var day2 = `منذ ${days1.toFixed(0)} يوم`
-                        ctx.font = '27px Arial Bold';
-                        ctx.fontSize = '20px';
-                        ctx.fillStyle = "#ffffff";
-                        ctx.textAlign = "center";
-                        ctx.fillText(day2, 388, 97); 
-
-                        //ur name
-                        ctx.font = '27px BlowBrush';
-                        ctx.fontSize = '30px';
-                        ctx.fillStyle = "#FFFFFF";
-                        ctx.textAlign = "center";
-                        ctx.fillText(h.user.username, 245, 365);
-                        //tag
-                        ctx.font = '27px Arial Bold';
-                        ctx.fontSize = '45px';
-                        ctx.fillStyle = "#ffffff";
-                        ctx.textAlign = "center";
-                        ctx.fillText(`#${heg.discriminator}`, 120, 450);
-                        
-                        //حالتك
-                           let status;
-    if (h.presence.status === 'online') {
-        status = 'اون لاين';
-    } else if (h.presence.status === 'dnd') {
-        status = 'مشغول';
-    } else if (h.presence.status === 'idle') {
-        status = 'خمول';
-    } else if (h.presence.status === 'offline') {
-        status = 'اوف لاين';
-    }
-                        ctx.font = '27px Arial Bold';
-                        ctx.fontSize = '30px';
-                        ctx.fillStyle = "#ffffff";
-                        ctx.textAlign = "center";
-                        ctx.fillText(`${status}`, 380, 450);
-                        
-                        //Avatar
-                        let Avatar = Canvas.Image;
-                        let ava = new Avatar;
-                        ava.src = buf;
-                        ctx.beginPath();
-                        ctx.arc(250, 238, 64, 0, Math.PI*2, true); 
-                        ctx.closePath();
-                        ctx.clip();
-                        ctx.drawImage(ava, 185, 172, 130, 130 );
-                         
-     message.channel.sendFile(canvas.toBuffer())
-})
-   })
-
-} });*/
 
 /*google cherche*/
 var prefix = "#"
@@ -1941,7 +1731,7 @@ google({ query: input, disableConsole: true }).then(results => {
 
 /*awsm*/
 var prefix = "#"
-let points = JSON.parse(fs.readFileSync('../awsm.json', 'utf8'));
+let points = JSON.parse(fs.readFileSync('../json/awsm.json', 'utf8'));
 client.on('message', message => {
 if (!points[message.author.id]) points[message.author.id] = {
 	points: 0,
@@ -1949,7 +1739,7 @@ if (!points[message.author.id]) points[message.author.id] = {
 if (message.content.startsWith(prefix + 'عواصم')) {
 	if(!message.channel.guild) return
 
-const type = require('../awsm.json');
+const type = require('../json/awsm.json');
 const item = type[Math.floor(Math.random() * type.length)];
 const filter = response => {
     return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
@@ -1984,7 +1774,7 @@ if (message.content.startsWith(prefix + 'نقاطي')) {
 	.setDescription(`نقاطك: \`${userData.points}\``)
 	message.channel.sendEmbed(embed)
   }
-  fs.writeFile("./awsmm.json", JSON.stringify(points), (err) => {
+  fs.writeFile("./json/awsmm.json", JSON.stringify(points), (err) => {
     if (err) console.error(err)
   })
 });
